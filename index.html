@@ -1,1 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ideal Home Co</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #F2EFE9;
+      color: #111111;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
 
+    /* ── HEADER / NAV ── */
+    header {
+      background-color: #F2EFE9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 900;
+      color: #C9A84C;
+      letter-spacing: 3px;
+      font-style: italic;
+    }
+    .logo svg {
+      width: 36px;
+      height: 36px;
+    }
+    nav a {
+      font-size: 15px;
+      font-weight: 400;
+      color: #111111;
+      letter-spacing: 0.5px;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      background-color: #F2EFE9;
+      display: flex;
+      align-items: stretch;
+      min-height: 680px;
+      padding: 0 0 60px 0;
+    }
+    .hero-image {
+      width: 38%;
+      min-width: 280px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-content {
+      flex: 1;
+      padding: 60px 64px 40px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-title {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #111111;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+    .hero-tagline {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      line-height: 1.4;
+      max-width: 560px;
+      margin-bottom: auto;
+    }
+    .hero-patent {
+      font-size: 17px;
+      font-weight: 400;
+      color: #333333;
+      text-align: right;
+      margin-top: 60px;
+      padding-right: 8px;
+    }
+
+    /* ── WHO WE ARE ── */
+    .who {
+      background-color: #000000;
+      color: #ffffff;
+      display: flex;
+      align-items: flex-start;
+      padding: 72px 48px;
+      gap: 60px;
+    }
+    .who-heading {
+      flex: 0 0 38%;
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .who-body {
+      flex: 1;
+      font-size: clamp(15px, 1.8vw, 20px);
+      line-height: 1.65;
+      color: #eeeeee;
+    }
+    .who-body p { margin-bottom: 24px; }
+    .who-body p:last-child { margin-bottom: 0; }
+
+    /* ── CONTACT FORM ── */
+    .contact {
+      background-color: #F2EFE9;
+      display: flex;
+      align-items: flex-start;
+      padding: 72px 48px;
+      gap: 60px;
+    }
+    .contact-heading {
+      flex: 0 0 38%;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .contact-form {
+      flex: 1;
+    }
+    .form-label {
+      font-size: 15px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 12px;
+      color: #111;
+    }
+    .form-label span {
+      font-weight: 300;
+      color: #555;
+      font-size: 13px;
+    }
+    .name-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .name-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .name-group label {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 6px;
+    }
+    .name-group label span { font-size: 12px; color: #888; margin-left: 4px; }
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #999;
+      background: transparent;
+      font-size: 15px;
+      padding: 6px 0 8px;
+      outline: none;
+      font-family: inherit;
+      color: #111;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+      border: 1px solid #999;
+      padding: 8px;
+      margin-top: 8px;
+      border-bottom: 1px solid #999;
+    }
+    .email-group { margin-bottom: 20px; }
+    .email-group label {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .email-group label span { font-size: 12px; color: #888; margin-left: 4px; }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: #333;
+    }
+    .checkbox-row input { width: 16px; height: 16px; }
+    .message-group label {
+      font-size: 13px;
+      color: #444;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .message-group label span { font-size: 12px; color: #888; margin-left: 4px; }
+    .submit-btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 18px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .submit-btn:hover { background: #222; }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: #000000;
+      color: #ffffff;
+      display: flex;
+      align-items: flex-start;
+      padding: 72px 48px;
+      gap: 60px;
+    }
+    .footer-left { flex: 1; }
+    .footer-right { flex: 0 0 35%; }
+    .footer-heading {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+    .footer-desc {
+      font-size: 15px;
+      color: #cccccc;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 28px;
+    }
+    .footer-email-input {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      padding: 14px 16px;
+      font-size: 15px;
+      background: #ffffff;
+      color: #333;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      margin-bottom: 16px;
+    }
+    .footer-email-input::placeholder { color: #aaa; }
+    .signup-btn {
+      display: inline-block;
+      background: #F0C017;
+      color: #111111;
+      border: none;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+    }
+    .signup-btn:hover { background: #d4a800; }
+    .contact-us-heading {
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    .contact-info {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #cccccc;
+    }
+    .contact-info a { color: #cccccc; }
+    .contact-info a:hover { color: #ffffff; text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 18px 24px; }
+      .hero { flex-direction: column; min-height: auto; }
+      .hero-image { width: 100%; height: 280px; }
+      .hero-content { padding: 36px 24px; }
+      .who, .contact, footer { flex-direction: column; padding: 48px 24px; gap: 32px; }
+      .who-heading, .contact-heading { flex: none; }
+      .footer-right { flex: none; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <a class="logo" href="#">
+      <!-- Inline SVG Logo: "IDEAL" text + house icon -->
+      <svg viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg" style="width:140px;height:50px;">
+        <!-- House roof icon -->
+        <polyline points="88,28 100,18 112,28" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- House walls -->
+        <rect x="92" y="28" width="16" height="12" fill="none" stroke="#C9A84C" stroke-width="3"/>
+        <!-- IDEAL text -->
+        <text x="0" y="40" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+              font-size="28" font-weight="900" font-style="italic"
+              fill="#C9A84C" letter-spacing="3">IDEAL</text>
+      </svg>
+    </a>
+    <nav>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-image">
+      <!--
+        Replace the src below with the actual hero image URL.
+        The original shows a cozy bedroom with wall hooks, a shelf,
+        a wall sconce, and a hat hanging — warm neutral tones.
+      -->
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/69af760407b3ba7b3f302496/your-hero-image.jpg"
+        alt="Cozy bedroom interior with wall hooks, wooden shelf, and warm lighting"
+        onerror="this.style.background='#d6ccbb';this.removeAttribute('src')"
+      />
+    </div>
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-title">The Future of Home Improvement</h1>
+        <p class="hero-tagline">Superior functionality with simple &amp; damage free installation</p>
+      </div>
+      <p class="hero-patent">Patent Pending…</p>
+    </div>
+  </section>
+
+  <!-- ══ WHO WE ARE ══ -->
+  <section class="who">
+    <h2 class="who-heading">Who We Are</h2>
+    <div class="who-body">
+      <p>Ideal Home Co is a team of recent graduates from Indiana University set to disrupt the home improvement industry through innovative materials and superior design.</p>
+      <p>Hooks, Shelves, Decor, &amp; More…</p>
+      <p>Use, Move, Reuse, Damage-Free.</p>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT FORM ══ -->
+  <section class="contact" id="contact">
+    <h2 class="contact-heading">Let's Stay in Touch</h2>
+    <form class="contact-form" action="#" method="POST">
+      <div class="form-label">Name</div>
+      <div class="name-row">
+        <div class="name-group">
+          <label>First Name <span>(required)</span></label>
+          <input type="text" name="first_name" required />
+        </div>
+        <div class="name-group">
+          <label>Last Name <span>(required)</span></label>
+          <input type="text" name="last_name" required />
+        </div>
+      </div>
+      <div class="email-group">
+        <label>Email <span>(required)</span></label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="news" name="news" />
+        <label for="news">Sign up for news and updates</label>
+      </div>
+      <div class="message-group">
+        <label>Message <span>(required)</span></label>
+        <textarea name="message" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Submit your message</button>
+    </form>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-left">
+      <h3 class="footer-heading">Join Our Mailing List</h3>
+      <p class="footer-desc">Subscribe for weekly styling tips, first access to new collections, and exclusive member-only offers—delivered straight to your inbox.</p>
+      <input type="email" class="footer-email-input" placeholder="Email Address" />
+      <button class="signup-btn">Sign Up</button>
+    </div>
+    <div class="footer-right">
+      <h3 class="contact-us-heading">Contact Us</h3>
+      <div class="contact-info">
+        <a href="mailto:jack@idealhomeco.com">jack@idealhomeco.com</a><br/>
+        <a href="tel:8477228280">847-722-8280</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
